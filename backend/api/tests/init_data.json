@@ -1,0 +1,12 @@
+[
+    {
+        "model": "api.event",
+        "pk": 1,
+        "fields": { "title" :"Сходка лололошки",
+                    "description" : "Очень крутая сходка!",
+                    "category" : "1",
+                    "location" : "2",
+                    "date" : "2023-6-18 17-30",
+                    "user_id" : "1" }
+    }
+]

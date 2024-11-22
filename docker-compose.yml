@@ -1,0 +1,35 @@
+version: '3'
+services:
+  db:
+    build:
+      context: .
+      dockerfile: dockerfile.db
+    image: postgres
+    container_name: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: announcerDB
+      POSTGRES_PORT: 5432
+    ports:
+      - 5432:5432
+  backend:
+    image: django
+    container_name: backend
+    build:
+      context: ./backend
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    command: python manage.py runserver 0.0.0.0:8000
+  frontend:
+    image: react
+    container_name: frontend
+    build:
+      context: ./frontend
+    ports:
+      - 5173:5173
+    depends_on:
+      - db
+      - backend

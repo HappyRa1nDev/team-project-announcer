@@ -1,0 +1,17 @@
+FROM python:3.11.3
+
+WORKDIR /app
+
+ENV PYTHONUNBUFFERED 1
+
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000
+
+RUN chmod +x /app/docker-entrypoint.sh
+
+ENTRYPOINT [ "/app/docker-entrypoint.sh" ]
